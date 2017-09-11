@@ -12,7 +12,7 @@ $ git clone git@github.com:payoh/wordpress-woocommerce-webkul-payoh-plugin.git
   **Note:**  
   Don't forget to put your ssh public key into your gitlab account.  Else try with http connection:  
 ```
-$ git clone https://github.com/lemonwaysas/wordpress-woocommerce-webkul-lemonway-plugin.git
+$ git clone https://github.com/payoh/wordpress-woocommerce-webkul-payoh-plugin.git
 ```
 
 2.  Checkout into `develop` branch
