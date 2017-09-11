@@ -1,10 +1,10 @@
 <?php
 
-class WC_Lemonwaymkt_Iban {
+class WC_Payohmkt_Iban {
 	
 	/**
 	 * 
-	 * @var WC_Gateway_Lemonway
+	 * @var WC_Gateway_Payoh
 	 */
 	protected $gateway;
 	
@@ -12,8 +12,8 @@ class WC_Lemonwaymkt_Iban {
 	
 	public function __construct(){
 		global $wpdb;
-		$this->table_name = $wpdb->prefix.'lemonway_iban';
-		$this->gateway = new WC_Gateway_Lemonway();
+		$this->table_name = $wpdb->prefix.'payoh_iban';
+		$this->gateway = new WC_Gateway_Payoh();
 	}
 	
 	public function hasIban($userId){

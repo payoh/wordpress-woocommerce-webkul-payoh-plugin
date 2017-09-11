@@ -1,10 +1,10 @@
 <?php
 
-class WC_Lemonwaymkt_Wallet {
+class WC_Payohmkt_Wallet {
 	
 	/**
 	 * 
-	 * @var WC_Gateway_Lemonway
+	 * @var WC_Gateway_Payoh
 	 */
 	protected $gateway;
 	
@@ -12,8 +12,8 @@ class WC_Lemonwaymkt_Wallet {
 	
 	public function __construct(){
 		global $wpdb;
-		$this->table_name = $wpdb->prefix.'lemonway_wallet';
-		$this->gateway = new WC_Gateway_Lemonway();
+		$this->table_name = $wpdb->prefix.'payoh_wallet';
+		$this->gateway = new WC_Gateway_Payoh();
 	}
 	
 	public function hasWallet($userId){
@@ -30,7 +30,7 @@ class WC_Lemonwaymkt_Wallet {
 	public function registerWallet($user,$sellerId){
 		
 		if(!$sellerId){			
-			throw new Exception(__("Seller infos not found!",LEMONWAYMKT_TEXT_DOMAIN));
+			throw new Exception(__("Seller infos not found!",PAYOHMKT_TEXT_DOMAIN));
 		}
 		
 			$wallet = array();
@@ -112,7 +112,7 @@ class WC_Lemonwaymkt_Wallet {
 					
 			} catch (DirectkitException $de) {
 				
-				//Wallet already exists on Lemonway but not in db
+				//Wallet already exists on Payoh but not in db
 				//So, we re-save the wallet
 				if((int)$de->getCode() == 152){ 
 					$this->save($wallet);

@@ -1,10 +1,10 @@
 <?php
 
-class WC_Lemonwaymkt_Moneyout
+class WC_Payohmkt_Moneyout
 {
     /**
      * 
-     * @var WC_Gateway_Lemonway
+     * @var WC_Gateway_Payoh
      */
     protected $gateway;
     
@@ -12,8 +12,8 @@ class WC_Lemonwaymkt_Moneyout
     
     public function __construct(){
         global $wpdb;
-        $this->table_name = $wpdb->prefix . 'lemonway_moneyout';
-        $this->gateway = new WC_Gateway_Lemonway();
+        $this->table_name = $wpdb->prefix . 'payoh_moneyout';
+        $this->gateway = new WC_Gateway_Payoh();
     }
     
     public function getMoneyouts($userId){
@@ -27,7 +27,7 @@ class WC_Lemonwaymkt_Moneyout
                     "wallet" => $walletId,
                     "amountTot" => sprintf("%.2f" ,$amountToPay),
                     "amountCom" => sprintf("%.2f" ,(float)0),
-                    "message" => get_bloginfo( 'name' ) . " - " . __("Moneyout from Wordpress module", LEMONWAY_TEXT_DOMAIN),
+                    "message" => get_bloginfo( 'name' ) . " - " . __("Moneyout from Wordpress module", PAYOH_TEXT_DOMAIN),
                     "ibanId" => $ibanId,
                     "autoCommission" => 0,
             );
@@ -35,11 +35,11 @@ class WC_Lemonwaymkt_Moneyout
             $op = $this->gateway->getDirectkit()->MoneyOut($params);
         
             if ($op->STATUS == "3") {
-                $message = sprintf(__("You paid %s from your wallet <b>%s</b>",LEMONWAY_TEXT_DOMAIN), wc_price($amountToPay), $walletId);
+                $message = sprintf(__("You paid %s from your wallet <b>%s</b>",PAYOH_TEXT_DOMAIN), wc_price($amountToPay), $walletId);
                 echo '<div id="message" class="updated notice is-dismissible"><p>' . $message . '</p></div>';
                  
             } else {
-                $message = __("An error occurred. Please contact support.",LEMONWAY_TEXT_DOMAIN);
+                $message = __("An error occurred. Please contact support.",PAYOH_TEXT_DOMAIN);
                 echo '<div id="message" class="error notice-error is-dismissible"><p>' . $message . '</p></div>';
             }
         } catch (Exception $e) {
